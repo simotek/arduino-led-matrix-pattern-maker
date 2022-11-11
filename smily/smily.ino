@@ -65,7 +65,9 @@ byte max7219_reg_intensity   = 0x0a;
 byte max7219_reg_scanLimit   = 0x0b;
 byte max7219_reg_shutdown    = 0x0c;
 byte max7219_reg_displayTest = 0x0f;
- 
+
+int smily_data[] = {0x8, 0x10, 0x22, 0x20, 0x20, 0x22, 0x10, 0x8};
+
 void putByte(byte data) {
   byte i = 8;
   byte mask;
@@ -150,15 +152,9 @@ void setup () {
  
 void loop () {
  
-  //if you use just one MAX7219 it should look like this
-   maxSingle(1,0x8);                     
-   maxSingle(2,0x10);                    
-   maxSingle(3,0x22);                    
-   maxSingle(4,0x20);                    
-   maxSingle(5,0x20);                    
-   maxSingle(6,0x22);                    
-   maxSingle(7,0x10);                    
-   maxSingle(8,0x8);                     
+   for (int i=0; i<8; i++) {
+    maxSingle(i+1, smily_data[i]);
+   }                   
    delay(50);
  
  //if you use more than one MAX7219, it should look like this
